@@ -22,15 +22,15 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
     @IBOutlet weak var bottomTextField: UITextField!
     
     var memeSentFromMain: Meme?
-     
-     override var prefersStatusBarHidden: Bool {
-         return true
-     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTextField(textField: topTextField)
-        configureTextField(textField: bottomTextField)
+        configureTextField(textField: topTextField, defaultText: "TOP")
+        configureTextField(textField: bottomTextField,defaultText: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,16 +38,16 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
         
         
         if let memeFromDetail = memeSentFromMain as Meme? {
-                  imagePickerView.image = memeFromDetail.image
-              }
+            imagePickerView.image = memeFromDetail.image
+        }
         
         if let _ = imagePickerView.image {
             shareButton.isEnabled = true
             cancelButton.isEnabled = true
             
         } else {
-            shareButton.isEnabled = false
-            cancelButton.isEnabled = false
+            shareButton.isEnabled = true
+            cancelButton.isEnabled = true
             
         }
         
@@ -71,18 +71,14 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.modalPresentationStyle = .fullScreen
-        if (sender.tag == 0){
-            imagePicker.sourceType = .camera
-        }
-        else {
-            imagePicker.sourceType = .photoLibrary
-        }
+        imagePicker.sourceType = sender.tag == 0 ? .camera : .photoLibrary
+        
         present(imagePicker,animated: true,completion: nil)
     }
     
     
     // MARK: - Text related
-    func configureTextField(textField: UITextField) {
+    func configureTextField(textField: UITextField, defaultText: String) {
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.black,
             NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -90,9 +86,8 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
             NSAttributedString.Key.strokeWidth:  -4.0
         ]
         
-        topTextField.attributedPlaceholder = NSAttributedString(string: "TOP", attributes: memeTextAttributes)
-        bottomTextField.attributedPlaceholder = NSAttributedString(string: "BOTTOM", attributes: memeTextAttributes)
         textField.textAlignment = .center
+        textField.text = defaultText
         textField.delegate = self
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = NSTextAlignment.center
@@ -147,8 +142,12 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
         
         // pass the ActivityViewController a memedImage as an activity item
         activityVC.completionWithItemsHandler = { activity, success, items, error in
-            self.save()
-            self.dismiss(animated: true, completion: nil)
+            if success {
+                // save meme here
+                self.save()
+                self.dismiss(animated: true, completion: nil)
+            }
+            
         }
         //present the VC
         present(activityVC, animated: true, completion: nil)
@@ -163,15 +162,14 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
         cancelButton.isEnabled = false
         shareButton.isEnabled = false
         dismiss(animated: true, completion: nil)
-
+        
     }
     
     //MARK: - Meme related
     func generateMemedImage() -> UIImage {
         //Hide Toolbar And Navigation Bar
         setNavBarVisibilty(true)
-        //        topNavBar.isHidden = true
-        //        toolbar.isHidden = true
+
         // Render View To An Image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
@@ -180,8 +178,7 @@ class AddImageViewController: UIViewController, UITextFieldDelegate , UIImagePic
         
         //Show Toolbar and Navigation Bar
         setNavBarVisibilty(false)
-        //        topNavBar.isHidden = false
-        //        toolbar.isHidden = false
+
         return memedImage
     }
     

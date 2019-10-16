@@ -24,7 +24,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86V-4X-NSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3169" y="-664"/>
+            <point key="canvasLocation" x="-2609" y="-162"/>
         </scene>
         <!--Table-->
         <scene sceneID="Rvj-hO-wiS">
@@ -86,7 +86,7 @@
                     <navigationItem key="navigationItem" title="Table" id="P92-nb-ciV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jCs-RN-ORu">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" id="CfL-LE-o1H"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="P3u-54-M0m"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -110,7 +110,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xJ-OZ-O2u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2446" y="210"/>
+            <point key="canvasLocation" x="-1455" y="191"/>
         </scene>
         <!--CollectionVC-->
         <scene sceneID="Asc-OA-cG3">
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="izC-K9-thS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="161"/>
+            <point key="canvasLocation" x="1690" y="-227"/>
         </scene>
         <!--Add Image View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -256,7 +256,7 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-KF-jSQ">
                                 <rect key="frame" x="0.0" y="529" width="375" height="36"/>
@@ -265,7 +265,7 @@
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -306,10 +306,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="-618"/>
+            <point key="canvasLocation" x="561" y="-162"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="CfL-LE-o1H"/>
+        <segue reference="P3u-54-M0m"/>
     </inferredMetricsTieBreakers>
 </document>
